@@ -15,6 +15,17 @@ import java.util.Scanner;
 public class Daily문제 {
 	
 	public static void main(String[] args) {
+		
+		Scanner sc=new Scanner(System.in);
+		char c='a';
+		double d=10.4;
+		System.out.println(c+d);
+		System.out.println("Please Enter the Data");
+		int o=sc.nextInt();
+		String a=sc.nextLine();
+		System.out.println(a);
+		
+		
 //      //12번문제		 
 //		Scanner scan = new Scanner(System.in);
 //		System.out.println("두개의 정수를 입력해주세요 : (하나씩 입력)");
@@ -33,7 +44,6 @@ public class Daily문제 {
 //		int b = scan.nextInt();
 //		int c = scan.nextInt();
 //		int total = (a*b)+c;
-//		
 //		System.out.printf("%d*+%d+%d",a,b,c);
 		
 //14번 문제
@@ -44,6 +54,7 @@ public class Daily문제 {
 //	int b=scan.nextInt();
 //	int div = a%b;
 //	System.out.pritln(div);
+//	
 //	System.out.println("a=%d, b=%d, a%%b=%d",a,b,a%b); //%를 출력할려면 %%두번써주면 된다.
 		
 			
@@ -66,9 +77,9 @@ public class Daily문제 {
 //		y = sc.nextLine(); // 한 줄 전체를 입력받음 
 //		System.out.printf("x = %s%ny = %s",x,y);
 //		//System.out.printf("x = %s %ny = %s %n",x, y);
-	
-	
-		
+//	256 + 0 + 0 +32 + 0 + 8 + 4+ 0 0
+
+
 		
 		
 
