@@ -8,6 +8,14 @@ public class 문제5번 {
 		// TODO Auto-generated method stub
 		Scanner sc=new Scanner(System.in);
 		
+		/*
+		 * commit 테스트 잡ㄱ업
+		 * 
+		 * 
+		 * 
+		 * 
+		 */
+		
 		System.out.println("정수를 입력하세요: ");
 		int a=sc.nextInt();
 		
