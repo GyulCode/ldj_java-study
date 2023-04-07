@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class 배열응용_7 {
+public class 배열응용_7_중요달력 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
