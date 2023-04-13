@@ -50,8 +50,8 @@ class Mango_Click{
 	String hour;
 	
 	
-	int[] Menu=new int [8];
-	String Menu; //ㅇ므..?
+//	int[] Menu=new int [8];
+//	String Menu; //ㅇ므..?
 
 }
 
