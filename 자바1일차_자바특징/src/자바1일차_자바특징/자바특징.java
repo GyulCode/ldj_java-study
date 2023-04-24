@@ -18,11 +18,20 @@ package 자바1일차_자바특징;
  	 
  	 
 */
+class A {
+	private int a=3;
+	
+}
+class B extends A{
+	int a=5;
+}
 
-public class 자바특징 {
+
+public class 자바특징 extends B {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		System.out.println();
 
 	}
 
