@@ -19,7 +19,7 @@ public class StudentSystem {
 			// 홍길동|90|90|90|270|90.00\n
 
 			// 학생별로 구분
-			String[] stds=sb.toString().split("\n");
+			String[] stds=sb.toString().split("\n");		
 			for(String ss:stds) {
 				// 학생각각의 데이터별 구분
 				StringTokenizer st=new StringTokenizer(ss,"|");
