@@ -19,7 +19,7 @@ public class Object_inputOutput_1 {
 		FileOutputStream fos=
 				new FileOutputStream("c:\\java_datas\\sawon.txt");
 		ObjectOutputStream oos =new ObjectOutputStream(fos);
-		// file다누이 문자열 -> 객체 단위로 저장
+		// file단위 문자열 -> 객체 단위로 저장
 		oos.writeObject(list);
 		fos.close();
 		oos.close();
