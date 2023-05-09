@@ -16,7 +16,9 @@ import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 
-public class ChatPanel extends JPanel{
+import com.sist.inter.ChatInterface;
+
+public class ChatPanel extends JPanel implements ChatInterface{
 	JTextPane pane; //편집가능
 	JTextField tf;
 	JButton b1,b2;

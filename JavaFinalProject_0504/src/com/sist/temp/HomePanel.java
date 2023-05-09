@@ -24,6 +24,7 @@ public class HomePanel extends JPanel {
 		setLayout(null);
 		pan.setLayout(new GridLayout(4, 5, 5, 5));
 		
+		
 		pan.setBounds(10, 15, 730, 700);
 		add(pan);
 		JPanel p = new JPanel();
