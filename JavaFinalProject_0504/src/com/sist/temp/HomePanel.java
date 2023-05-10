@@ -70,7 +70,6 @@ public class HomePanel extends JPanel implements HomeInterface,MouseListener{
 	   pan.removeAll();// 데이터 제거 
 	   pan.validate(); // Panel 재배치
    }
-   
     // 자동호출 => 콜백함수(시스템에 의해 호출되는 메소드)
 	@Override
 	public void mouseClicked(MouseEvent e) {

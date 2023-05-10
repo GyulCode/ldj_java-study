@@ -78,7 +78,7 @@ public class Server implements Runnable{
 	 *     add , get , size 
 	 */
     private ServerSocket ss;
-    private final int PORT=10000;
+    private final int PORT=3355;
     // 서버 가동 ==> 한컴퓨터안에서 서버를 두개 실행 할 수 없다 
     public Server()
     {
@@ -262,6 +262,29 @@ public class Server implements Runnable{
 				    		   break;
 				    	   }
 				    	}
+				    }
+				    break;
+				    case Function.EXIT:
+				    {
+				    	String mid=st.nextToken();
+				    	int i=0;
+				    	for(Client user:waitVc)
+				    	{
+				    		if(user.id.equals(mid))
+				    		{
+				    			
+				    			user.messageTo(Function.MYEXIT+"|");
+				    			waitVc.remove(i);
+				    			in.close();
+				    			out.close();
+				    			// 서버 종료 
+				    			break;
+				    		}
+				    		i++;
+				    	}
+				    	
+				    	// 전체 메세지 
+				    	messageAll(Function.EXIT+"|"+mid);
 				    }
 				    break;
 				}

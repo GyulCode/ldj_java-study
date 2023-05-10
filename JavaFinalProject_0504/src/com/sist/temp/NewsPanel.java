@@ -10,11 +10,11 @@ import java.awt.event.*;
 import java.util.List;
 import java.util.*;
 public class NewsPanel extends JPanel implements ActionListener{
-   NewsCard[] cards=new NewsCard[5];
+   NewsCard[] cards=new NewsCard[10];
    JTextField tf;
    JButton b;
    JPanel pan;
-   JScrollPane pane=new JScrollPane();
+   JScrollPane pane;
    public NewsPanel()
    {
 	   // 초기화 
@@ -25,16 +25,22 @@ public class NewsPanel extends JPanel implements ActionListener{
 		   cards[i]=new NewsCard();
 	   }
 	   pan=new JPanel();
-	   pan.setLayout(new GridLayout(5,1,5,5));
+	   pan.setLayout(new GridLayout(10,1,5,5));
 	   setLayout(null);
 	   // 배치
+	   
+	   //pane.setViewportView(pan);
 	   tf.setBounds(10, 15, 250, 30);
 	   b.setBounds(265, 15, 100, 30);
-	   pan.setBounds(10, 55, 720, 650);
+	   pan.setPreferredSize(new Dimension(750,950));
+	   pane=new JScrollPane(pan);
+	   pane.setPreferredSize(new Dimension(720,650));
+	   pane.setBounds(10, 55, 720, 650);
+	   
 	   add(tf);
 	   add(b);
-	   add(pan);
-	   
+	   add(pane);
+	   //add(pan);
 	   
 	   // 등록 
 	   tf.addActionListener(this);
@@ -46,7 +52,7 @@ public class NewsPanel extends JPanel implements ActionListener{
     public void newsPrint(String fd)
     {
     	List<NewsVO> list=NaverNewsManager.newsSearchData(fd);
-		pan.setLayout(new GridLayout(5,1,5,5));
+		pan.setLayout(new GridLayout(10,1,5,5));
 		int i=0;
 		for(NewsVO vo:list)
 		{

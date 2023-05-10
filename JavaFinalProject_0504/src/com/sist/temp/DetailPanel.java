@@ -20,7 +20,6 @@ public class DetailPanel extends JPanel implements ActionListener{
     JButton b1,b2;
     JLabel titleLa,singerLa,albumLa,stateLa,crementLa,keyLa;
     ControlPanel cp;
-    
     public DetailPanel(ControlPanel cp)
     {
     	this.cp=cp;

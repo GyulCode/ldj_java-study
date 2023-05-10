@@ -22,48 +22,69 @@ import java.net.*;
  *   2) 서버에서 전송되는 데이터를 출력 
  *      ----------------------- 쓰레드 
  */
-
 /*
- *    웹 필요기술
- *       -> DB(Oracle MYsql)
- *       -> 데이터베이스제어 -> 자바
- *       자바
- *          클래스 개념 / 인터페이스/ 예외처리/ 라이브러리
- *          java.lang
- *             object / string / String Buffer / Math / Wrapper
- *          java.util
- *             StringTokenizer / Date,Calendar
- *             Collection ->  ArrayList, HahsMap, HashSet
- *          java.net
- *             URL, URLEncoder
- *          java.io : 웹 -> 업로드, 다운로드 (file)
- *          Buffered~
- *          FileInputStream/Output
- *          FileReader / Writer
- *          BufferedReader / File
+ *   웹에서 필요한 기술 
+ *   => 데이터베이스 (오라클 => MySQL)
+ *      ------------------------- MyBatis / JPA
+ *   => 데이터베이스 제어 => 자바 
+ *      자바 
+ *       클래스 개념 / 인터페이스 / 예외처리 / 라이브러리 
+ *                  -------- 요구사항 분석 (기능)
+ *       -------- 변수 / 메소드 / 생성자 
+ *       java.lang 
+ *          Object / String / StringBuffer / Math / Wrapper
+ *       java.util
+ *          StringTokenizer / Date,Calendar 
+ *          Collection => ArrayList,HashMap,HashSet
+ *       java.net
+ *          URL , URLEncoder 
+ *       java.io : 웹 => 업로드,다운로드 (File)
+ *                 => Buffered~
+ *                 FileInputStream/FileOutputStream
+ *                 FileReader / FileWriter
+ *                 BufferedReader / File
  *          
- *       java.text : SmipleDateFormat
- *       -------------------------------
- *    2차 자바(WEB관련)
- *    java.sql, javax.sql, javax.nameing
- *    javax.servlet.*
- *    
- *    브라우저 - 자바 - 오라클      
- *    윈도우 - 자바 - 파일
- *    
- *    select update insert delete -> DML
- *    create drop truncate alter rename -> DDL
- *    grant drop -> DCL
- *    commit / rollback -> TCL 일괄처리
- *    기타 
- * 
+ *       java.text : SimpleDateFormat
+ *      --------------------------------------------
+ *      2차 자바 (Web관련)
+ *       java.sql , javax.sql , javax.nameing
+ *       javax.servlet.*
+ *       
+ *       브라우저  ====== 자바  ====== 오라클 
+ *                                 ----- 데이터를 저장
+ *       윈도우   ====== 자바  ====== 파일 
+ *                   ------ 데이터읽기 / 데이터전송 
+ *       => 1) 오라클 제어 
+ *             SELECT / UPDATE / DELETE / INSERT => DML
+ *             --------------------------------- 데이터 조작언어
+ *             CREATE / ALTER / DROP / TRUNCATE / RENAME => DDL
+ *             ----------------------------- 데이터 저장/생성
+ *             GRANT / REVOKE 
+ *             --------------- DCL(Admin)
+ *             COMMIT / ROLLBACK
+ *             ----------------- TCL(일괄처리)
+ *          2) 기타 : VIEW/SEQUENCE/PS-SQL(FUNCTION,PROCEDUR/TRIGGER)
+ *          3) 데이터베이스 모델링 (정규화 , 제약조건)
+ *        => 브라우저에 데이터 출력 : HTML / CSS / JavaScript
+ *        => 자바스크립트 라이브러리 : JQuery / Ajax 
+ *                              -------------- 교재 (동영상)
+ *       ----------------------------- 1차 프로젝트 
+ *       Spring (Back-End) / VueJS (Front-End) 
+ *       ----------------------------- 2차 프로젝트 (조별)
+ *       Spring-Boot / My-SQL / ReactJS / JPA 
+ *       ----------------------------- 3차 프로젝트 (개인)
+ *       AWS => 호스팅 
+ *       ----------------------------- 이력서 첨부 (입사)
+ *       
+ *                              
+ *       
  */
 public class NetworkMain extends JFrame 
 implements ActionListener,Runnable,MouseListener{
     MenuPanel mp;
     ControlPanel cp;
     TopPanel tp;
-    JButton b1,b2,b3,b4,b5;
+    JButton b1,b2,b3,b4,b5,b6;
     JLabel logo;
     Login login=new Login();
     // 페이지 지정 
@@ -105,13 +126,15 @@ implements ActionListener,Runnable,MouseListener{
     	b2=new JButton("뮤직검색");
     	b3=new JButton("채팅");
     	b4=new JButton("뉴스검색");
-    	b5=new JButton("뮤직추천");
-    	mp.setLayout(new GridLayout(5,1,10,10));
+    	b5=new JButton("커뮤니티");//CURD
+    	b6=new JButton("나가기");
+    	mp.setLayout(new GridLayout(6,1,10,10));
     	mp.add(b1);
     	mp.add(b2);
     	mp.add(b3);
     	mp.add(b4);
     	mp.add(b5);
+    	mp.add(b6);
     	// 추가
     	add(mp);
     	add(cp);
@@ -123,7 +146,7 @@ implements ActionListener,Runnable,MouseListener{
     	setSize(1300, 800);
     	//setVisible(true);
     	// 종료
-    	setDefaultCloseOperation(EXIT_ON_CLOSE);
+    	setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     	setTitle("네트워크 뮤직 프로그램");
     	// 이벤트 등록 
     	b1.addActionListener(this);
@@ -131,6 +154,7 @@ implements ActionListener,Runnable,MouseListener{
     	b3.addActionListener(this);
     	b4.addActionListener(this);
     	b5.addActionListener(this);
+    	b6.addActionListener(this);
     	// 로그인
     	login.b1.addActionListener(this);
     	login.b2.addActionListener(this);
@@ -161,10 +185,10 @@ implements ActionListener,Runnable,MouseListener{
 		// TODO Auto-generated method stub
 		try
 		{
-			//UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
+			UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
 			//UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
 			//UIManager.setLookAndFeel("com.jtattoo.plaf.mint.MintLookAndFeel");
-			UIManager.setLookAndFeel("com.jtattoo.plaf.luna.LunaLookAndFeel");
+			//UIManager.setLookAndFeel("com.jtattoo.plaf.luna.LunaLookAndFeel");
 			//UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");X
 			// BernsteinLookAndFeel  
 			//UIManager.setLookAndFeel("com.jtattoo.plaf.bernstein.BernsteinLookAndFeel");
@@ -207,7 +231,7 @@ implements ActionListener,Runnable,MouseListener{
 		}
 		else if(e.getSource()==b5)
 		{
-			cp.card.show(cp, "recomm");
+			cp.card.show(cp, "board");
 		}
 		else if(e.getSource()==login.b1)
 		{
@@ -242,7 +266,7 @@ implements ActionListener,Runnable,MouseListener{
 			try
 			{
 				// 서버 연결 
-				s=new Socket("211.238.142.108",10000);
+				s=new Socket("localhost",3355);
 				// 서버 컴퓨터 => IP 
 				// 211.238.142.()
 				// 읽는 위치 / 쓰는 위치
@@ -355,6 +379,13 @@ implements ActionListener,Runnable,MouseListener{
 			sm.setVisible(true);
 			rm.setVisible(false);
 		}
+		else if(e.getSource()==b6)//나가기
+		{
+			try
+			{
+				out.write((Function.EXIT+"|"+myId+"\n").getBytes());
+			}catch(Exception ex){}
+		}
 		
 	}
 	// 서버에서 결과값을 받아서 출력 => 쓰레드 (자동화) 
@@ -369,6 +400,7 @@ implements ActionListener,Runnable,MouseListener{
 			{
 				String msg=in.readLine();
 				// 서버에서 보낸값 
+				System.out.println("Server 전송값:"+msg);
 				StringTokenizer st=
 						new StringTokenizer(msg,"|");
 				int protocol=Integer.parseInt(st.nextToken());
@@ -427,6 +459,27 @@ implements ActionListener,Runnable,MouseListener{
 					  rm.setVisible(true);
 				  }
 				  break;
+				  case Function.MYEXIT:
+				  {
+					  dispose();// 윈도우 메모리 해제 
+					  System.exit(0);// 프로그램 종료
+				  }
+				  break;
+				  case Function.EXIT:
+				  {
+					  String mid=st.nextToken();
+					  for(int i=0;i<cp.cp.model.getRowCount();i++)
+					  {
+						  String uid=cp.cp.table.getValueAt(i, 0).toString();
+						  if(mid.equals(uid))
+						  {
+							  cp.cp.model.removeRow(i);
+							  break;
+						  }
+					  }
+				  }
+				  break;
+				  
 				}
 			}
 		}catch(Exception ex){}
