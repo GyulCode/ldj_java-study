@@ -14,6 +14,7 @@ public class NewsPanel extends JPanel implements ActionListener{
    JTextField tf;
    JButton b;
    JPanel pan;
+   JScrollPane pane=new JScrollPane();
    public NewsPanel()
    {
 	   // 초기화 
@@ -24,7 +25,7 @@ public class NewsPanel extends JPanel implements ActionListener{
 		   cards[i]=new NewsCard();
 	   }
 	   pan=new JPanel();
-	   pan.setLayout(new GridLayout(10,1,5,5));
+	   pan.setLayout(new GridLayout(5,1,5,5));
 	   setLayout(null);
 	   // 배치
 	   tf.setBounds(10, 15, 250, 30);
@@ -34,10 +35,28 @@ public class NewsPanel extends JPanel implements ActionListener{
 	   add(b);
 	   add(pan);
 	   
+	   
 	   // 등록 
 	   tf.addActionListener(this);
 	   b.addActionListener(this);
+	   
+	   newsPrint("뮤직");
+	   
    }
+    public void newsPrint(String fd)
+    {
+    	List<NewsVO> list=NaverNewsManager.newsSearchData(fd);
+		pan.setLayout(new GridLayout(5,1,5,5));
+		int i=0;
+		for(NewsVO vo:list)
+		{
+			cards[i].titleLa.setText(vo.getTitle());
+			cards[i].contentTa.setText(vo.getContent());
+			cards[i].dateLa.setText(vo.getDate());
+			pan.add(cards[i]);
+			i++;
+		}
+    }
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -51,17 +70,7 @@ public class NewsPanel extends JPanel implements ActionListener{
 				tf.requestFocus();
 				return;
 			}
-			List<NewsVO> list=NaverNewsManager.newsSearchData(fd);
-			pan.setLayout(new GridLayout(10,1,5,5));
-			int i=0;
-			for(NewsVO vo:list)
-			{
-				cards[i].titleLa.setText(vo.getTitle());
-				cards[i].contentTa.setText(vo.getContent());
-				cards[i].dateLa.setText(vo.getDate());
-				pan.add(cards[i]);
-				i++;
-			}
+			newsPrint(fd);
 		}
 	}
 }
