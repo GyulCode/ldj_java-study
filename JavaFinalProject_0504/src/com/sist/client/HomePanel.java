@@ -24,7 +24,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
-public class HomePanel {
+public class HomePanel{
 	
 	public static void main(String[] args) {
 		JFrame fram = new JFrame();
@@ -53,9 +53,13 @@ public class HomePanel {
 		fram.add(p1,BorderLayout.SOUTH);
 //		fram.add(p2);
 		fram.add(sc1,BorderLayout.NORTH);
-		
-		
-		
+
+		int a=0, s=0;
+		while(a++ <=9) {
+			s+=a;
+			System.out.println("연산후 a값 "+a);
+		}
+		System.out.println("a: "+a+", s: "+s);
 
 		
 	}
