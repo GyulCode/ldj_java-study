@@ -1,4 +1,4 @@
-package Memo;
+package study_1;
 
 /*
  23-05-15
@@ -20,5 +20,7 @@ package Memo;
 공홈 - kr아님 - xe검색
 https://www.oracle.com/database/sqldeveloper/technologies/download/
 happy
+
+2444 15552 1330
 
 */
