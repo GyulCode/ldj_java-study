@@ -195,16 +195,17 @@ public class EmpDAO {
 	}
 	
 	// 3. 검색
-	public EmpVO empSearchData(String ename) {
+	public List<EmpVO> empSearchData(String ename) {
 		List<EmpVO> list = new ArrayList<>();
 		EmpVO vo=new EmpVO();
 		try {
 			// 1. 오라클 연결
 			getConnection();
 			// 2. SQL문장 만들기
-			String sql ="SELECT * FROM emp WHERE ename LIKE '%"+ename.toUpperCase()+"%'";
+			String sql ="SELECT * FROM emp WHERE ename LIKE '%'||?||'%'";
 			// 3. 오라클 전송
 			ps=conn.prepareStatement(sql);
+			ps.setString(1, sql);
 			// 4. 실행후에 결과값 받기
 			ResultSet rs=ps.executeQuery();
 			// 5. rs에 있는 데이터를 vo에 담는다
