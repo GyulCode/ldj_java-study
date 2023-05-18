@@ -1,4 +1,4 @@
-package study_1;
+package MyMemo;
 
 /*
  23-05-15

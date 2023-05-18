@@ -1,4 +1,4 @@
-package study_1;
+package MyMemo;
 
 import java.io.*;
 import java.util.*;
