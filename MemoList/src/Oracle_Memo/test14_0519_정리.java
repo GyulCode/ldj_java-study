@@ -137,6 +137,178 @@ package Oracle_Memo;
                GROUP BY SUBSTR();
            
       4) 다른 테이블 연결 -> 정규화 : 조인, 서브쿼리
+         join -> select문장에서만 사용이 가능
+         ----두개이상의 테이블을 연결해서 필요한 데이터 추출
+         = select 컬럼대신 ---- 스칼라 서브쿼리(JOIN 대체)
+         = from 테이블대신 사용 ---- 인라인뷰 --> 보안, 페이지나누기
+         = where문장 조건값 ---- 서브쿼리
+         
+         조인 종류
+            INNER JOIN(INTERSECT 교집합) -> NULL일 경우에 처리하지 않는다
+                  -> 연산자(=, BETWEEN, 논리연산자) -> 같은 값, 포함
+                  -> EQUI_JOIN(동등조인)
+                  -> NON_EQUI_JOIN(비동등 조인) =외의 다른 연산자
+                  -> NATURAL JOIN -> SQL문장이 간결 -> 같은 컬럼을 가지고 있다
+                  -> JOIN ~USING -> SQL문장이 간결 -> 같은 컬럼을 가지고 있다
+                  형식)
+                     오라클 조인 (오라클, MySQL)
+                     SELECT A.a, A.b, B.b, B.c -> 컬럼명마다 테이블명.컬럼명으로 구분 테이블명은 별칭도 가능
+                     FROM A aa (INNER)JOIN B bb -> 테이블의 별칭
+                     ON A.b = B.b
+                     
+					 SELECT A.a, A.b, B.b, B.c 
+                     FROM A JOIN B USING(b)
+                     
+                     **조인시 반드시 컬럼명이 같은건 아니다
+                      -> 값을 가지고 있는 컬럼이 있는 경우에 처리가 가능
+                      where mgr=empno
+                      
+            OUTER JOIN -> inner join은 null값인 경우, 값이 없는 경우처리 불가능
+                       -> 보완
+                       -> intersect + minus
+                       형식)
+                       LEFT OUTER JOIN
+                        
+                        SELECT A.a, A.b, B.c
+                        FROM A,B
+                        WHERE A.a=B.a(+)
+                        
+                        SELECT A.a, A.b, B.c
+                        FROM A LEFT (OUTER) JOINB
+                        ON A.a=B.a
+                       
+                       RIGHT OUTER JOIN
+                       
+                        SELECT A.a, A.b, B.c
+                        FROM A,B
+                        WHERE A.a(+)=B.a
+                        
+                        SELECT A.a, A.b, B.c
+                        FROM A RIGHT (OUTER) JOINB
+                        ON A.a=B.a
+            ----------------------------조인(조인은 데이터값을 결합)
+            SQL 문장을 연결해서 -> 한번에 수행히 가능하게 만든다 : 서브쿼리
+            = 서브쿼리의 종류
+            ----------------------------
+            1) 단일행 서브쿼리 : 컬럼1, 결과값1
+            2) 다중행 서브쿼리 : 컬럼1, 결과값 여러개 -> 10,20,30
+              > ANY(10,20,30) = ANY 10
+              < ANY(10,20,30) = ANY 30
+              > ALL(10,20,30) = ALL 30
+              < ALL(10,20,30) = ALL 10
+              
+            ----------------------------WHERE절 뒤에
+            3) 스칼라 서브쿼리 -> SELECT뒤에
+            4) 인라인뷰 -> FROM 뒤에 -> ROWNUM
+            ----------------------------5) 고급쿼리
+            SELECT ~ -> 메인쿼리
+            FROM table_name
+            WHERE 컬럼 (SELECT~)
+                      서브쿼리(1, 여러개)
+            서브쿼리에서 결과값을 받아서 메인쿼리로 전송해서 실행하는 방식
+            -------- 장점 : 다른 테이블 연결이 가능, DML전체에서 사용이 가능
+                           JOIN보다 처리 속도가 빠르다(권장)
+                     단점 : SQL문장이 길어진다
+                     -> 퍼포먼스가 좋다, 가독성이 약하다
+            ------------------------------------------------기본쿼리
+            필요한 데이터를 저장한후에 처리 -> 저장공간이 필요 -> 테이블
+            DDL 데이터 정의어 -> COMMIT없이 자동 저장, 복구 할 수 없다 -> 백업이 중요함 -> .sql(INSERT), .csv
+            ---
+            = CREATE : 생성
+              => table, view, index, sequence, function, procedure, tirgger
+                 단 사용자 계정으로는 권한이 없어서 관리자로 만들어야함
+              형식)
+                  CREATE TABLE table_name
+                  컬럼명 데이터형 [제약조건(여러개 가능)],
+                     컬럼생성과 동시에 제약조건이 생성 -> 컬럼레벨
+                     not null, default
+                  컬럼명 데이터형 [제약조건(여러개 가능)],
+                  [제약조건], --> 테이블생성이 종료후 생성 -> 테이블레벨
+                     KEY종류
+                     PRIMARY KEY : 유일값 (null값 허용하지 않음)
+                     CHECK : 지정된 데이터만 출력
+                     FOREIGN KEY : 다른 테이블의 값을 참조 -> 조인
+                     UNIQUE : 후보키 지정 -> 유일값(null 값을 허용)
+                  [제약조건]
+                    1. PRIMARY KEY는 기본키(테이블에는 기본키 한개이상 첨부가 가능), 중복, 널값 안됨
+                    2. PRIMARY KEY(empno, ename) 가능
+                       -> 1,A 
+                       -> 2,B
+                       -> 2,A
+                    -> 사번 2를 삭제할 경우 사원 B,A 도 같이 삭제됨
+                       이상현상을 방지(무결성) -> 수정, 삭제(원하지 않는 데이터삭제 방지)
+                       
+                   1) NOT NULL
+                      컬럼명 데이터형 CONSTRAINT 테이블명_컬럼명_NN NOT NULL
+                                            ----------- 중복없이 사용
+                                                |
+                                            권장 -> 제약조건은 변경, 삭제가 많아서 CONSTRAINT에 별칭을 준다는 느낌
+                      ALTER TABLE table_name DROP CONSTRATINT 테이블명_컬럼명_nn
+                      컬럼명 데이터형 not null -> not null 속성을 제거 할려면 drop후에 다시 테이블 작성해야함
+                   2) UNIQUE
+                      constraint 테이블명_컬럼명_uk UNIQUE(컬럼명)
+                      
+                   3) PRIMARY KEY
+                      constraint 테이블명_컬럼명_pk PRIMARY KEY(컬럼명)
+                      
+                   4) FORIEN KEY
+                      constraint 테이블명_컬럼명_fk FOREIGN KEY(컬럼명)
+                      REFERENCES 참조테이블(참조컬럼)
+                      
+                   5) CHECK : 라디오 버튼, 콤보 박스
+                      CONSTRAINT 테이블명_컬럼명_ck CHECK(컬럼명 IN('A','B','C'))
+                      
+                   6) DEFAULT
+                      컬럼명 데이터형 default 값 -> 날짜(SYSDATE)
+                  
+            = ALTER : 변경 ------------단 테이블에 값이 있는 경우 사용함
+              -> 컬럼을 추가
+                 ALTER TALBE table_name ADD column(속성) 데이터형 [제약조건]
+              -> 컬럼을 삭제
+                 ALTER TALBE table_name DROP COLUMN 컬럼명
+              -> 데이터 변경
+                 ALTER TALBE table_name MODIFY column(속성) 데이터형 [제약조건]
+              -> 제약조건 추가
+                 ALTER TALBE table_name ADD 컬럼명 데이터형 CONSTRAINT cons_name_(pk,fk,nn,ck)
+                 ALTER TALBE table_name MODIFY 컬럼명 데이터형 CONSTRAINT cons_name_(pk,fk,nn,ck)
+              -> 제약조건 삭제
+                 ALTER TABLE table_name DROP CONSTRAINT cons_name
+              -> 제약조건명 변경
+                 ALTER TABLE table_name MODIFY CONSTRAINT old_name TO new_name 
+              -> 컬럼명 변경
+                 ALTER TABLE table_name MODIFY COLUMN old_name TO new_name
+                 
+              -> 제약조건 확인 ***
+                 SELECT *
+                 FROM user_constraints
+                 WHERE table_name = '대문자 테이블명'
+                 -> user_constraints, user_tables, user_views ...
+              
+            = DROP : 삭제 (완전삭제 -> 테이블+테이블)
+              DROP TABLE table_name
+            = RENAME : 이름변경 -> 시노님(별칭) -> 전역
+              RENAME old_name TO new_name
+            = TRUNCATE : 데이터 잘라내기
+              TRUNCATE TABLE table_name
+              --------------------------------------ROLLBACK을 사용해서 복구 할 수 없다
+              erdcloud.com -> 데이터베이스 스키마 편집 사이트
+            복습 page : 145(select형식), 149(연산자 종류), 157(group by 집계함수),
+                       161(group by 주의점, 컬럼명과 집계합수 동시사용 불가)
+                       162 조인, 169 조인형식
+                       170 서브쿼리 173 확인(서브쿼리 실행순서)
+                       179 DDL create 형식, 순서
+                       180 page : 문자데이터형
+                       183 오라클 데이터형
+                       184~185 alter : add, modify, drop
+                       186 : drop
+            --------------------------------
+            DML 데이터 조작하는 언어 -> 웹개발자가 자주씀
+            -> 형식이 한개씩 있다
+            insert(데이터 추가), update, delete
+            -> 회원가입         회원수정    회원탈퇴
+            -> 단위가 row단위 (한줄추가, 한줄삭제)
+                       
+               
       
       
      
