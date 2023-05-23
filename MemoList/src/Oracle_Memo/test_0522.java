@@ -397,25 +397,6 @@ WHERE hakbun=5;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-          
-              
-              
- 
-    
-    
-    
     
  */
 public class test_0522 {
