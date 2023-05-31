@@ -25,27 +25,21 @@ Back-End : Java, Oracle, Spring, MSA(분산처리)
                                        |  [도커, 쿠바네티스, 젠킨스]
                               MVC -> Domain
 FullStack : Front + Back -> (Spring + VueJS, ReactJS => redux / Vue3)
-
-JVM은 동작시 운영체제로 부터 JVM 고유의 메모리(runtime data area)를 할당받는다
-그전에 JVM의 동작 과정을 잠시 복습하고가자!
-자바컴파일러 javac가 바이트코드인 .class을(클래스파일 API) 만들면
-ClassLoader가 Runtime Data area에 파일을 올려준다
-그러면 Execution Engine에서 바이트 코드를 실행가능하도록 해석한다.
-
-그럼 오늘의 주제인 Runtime Data Area / JVM의 메모리 영역을 알아보자
-RDA 내부는 5개의 영역으로 다시 나누어 지는데
-1. PC Register
-2. Heap
-3. (Java)Stack
-4. Method Area : 인스턴스 생성을 위한 객체구조, 생성자, 필드, static변수, 메소드 데이터, 
-JVM 동작시 같이 생성되고 종료시 같이 사라짐 / JVM당 1개만 생성됨 -> thread 들이 공유하는 영역
-다른 메모리 영역에서 요청이 오면 실제 물리 메모리 주소로 변환되어서 전달됨
-
-5. Navtive Method Stacks
-https://tecoble.techcourse.co.kr/post/2021-08-09-jvm-memory/ - 사진
-https://www.holaxprogramming.com/2013/07/16/java-jvm-runtime-data-area/
-
 엔코아 인터파크
+
+
+--1차, 2차 프로젝트--
+1. 아이템선정
+2. 기능추출
+3. 역할 분담
+4. 각자 역할 분담한 부분 -> 요구사항(1.문서화, 유스케이스 다이어그램)
+5. 해당 화면의 데이터 추출
+6. 데이터베이스 설정(table)
+7. 연결->ERD
+8. table에 데이터 수집
+9. 화면 ui
+10. 구현(MVC), 요구사항 확인, 테스팅
+11. 배포(발표)
 
 
 
