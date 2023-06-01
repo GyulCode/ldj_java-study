@@ -13,7 +13,7 @@ public class Study_test {
 		int a=1;
 		return a;
 	}
-	
+	 
 	public static void main(String[] args) {
 		
 		try {
