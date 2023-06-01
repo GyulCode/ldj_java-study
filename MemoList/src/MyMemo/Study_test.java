@@ -8,7 +8,6 @@ public class Study_test {
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	static StringTokenizer st;
 	static int[] cardnum ;
-	final int b = 5;
 	int compare(int arr[], int n, int m) {
 		
 		int a=1;
