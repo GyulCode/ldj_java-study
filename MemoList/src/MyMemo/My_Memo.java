@@ -1,7 +1,11 @@
 package MyMemo;
 
 /*
+<<<<<<< HEAD
  23-06-01 목
+=======
+ 23-05-22
+>>>>>>> refs/remotes/origin/master
  --study-
  1. 혼공책 -> 자바의 자료형
  2. 노션 공부, 깃 보충
