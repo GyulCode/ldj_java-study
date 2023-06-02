@@ -1,27 +1,26 @@
 package MyMemo;
 
 /*
-<<<<<<< HEAD
- 23-06-01 목
-=======
- 23-05-22
->>>>>>> refs/remotes/origin/master
+ 23-06-02 금
  --study-
- 1. 혼공책 -> 자바의 자료형
- 2. 노션 공부, 깃 보충
- 3. 진도 복습 (html 110pag~, 데이터 베이스 복습(Oracl_Memo참고), BoardUpdateServlet, 환경세팅(본체) )
- 4. 자바(소켓, 스트림, 제네릭)
+ 1. 혼공책 정리해서 올려두기
+ 2. 알고리즘
+ 3. 자료형 올려두기 --- 상
+ 4. 진도 복습 (html 110pag~, 데이터 베이스 복습(Oracl_Memo참고), BoardUpdateServlet, 환경세팅(본체) )
+ 5. 자바(소켓, 스트림, 제네릭), 노션 공부, 깃 보충
  쇼핑리스트(옷, 준비물), 개발자(로드맵), 자바 
 
  --개인--
- 여행 준비 : 옷
- 국취 지원서류,
+ 여행 준비 : 옷, 여행준비물
+ 
  개발자 : 
  1. 목표 구체화
  2. 로드맵 작성 (요구사항 분석 및 필요 기술)
  3. 자바공부 (스트림버퍼, 제네릭, 소켓..등등)
+ 
+ -자바의 자료형 callby reference-
  https://gwang920.github.io/java/CallbyValue-CallbyReference/#%EB%AC%B8%EC%9E%90%EC%97%B4string-%ED%98%95
- 자바의 자료형 callby reference
+ 
  
  --취업 :
  1. 포폴 만들어두기(소켓, 크롤링)
