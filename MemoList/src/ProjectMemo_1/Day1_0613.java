@@ -5,6 +5,7 @@ public class Day1_0613 {
 }
 /*
 --데이터베이스 모델링
+// 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
 
   1. 요구사항 분석: 결과물(요구사항 명세서) -> 수정(추가, 수정, 삭제)
   2. 개념적 설계 : 결과물(E-R)다이어그램 유스케이스 다이어그램
