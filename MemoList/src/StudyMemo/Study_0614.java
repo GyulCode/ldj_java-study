@@ -8,6 +8,7 @@ public class Study_0614 {
 }
 /*
    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 - webstudy2 토큰
+   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 - webstudy1 토큰
    
    0614_수
    ER다이어그램 관계 표시
