@@ -44,12 +44,12 @@ public class Study_test {
 				cardnum[i] = Integer.parseInt(st.nextToken());
 			}
 			
-			int answer=compare(cardnum,n,m);
+			int answer=compare(cardnum,n,m); 
 			System.out.println(answer);
 			
 		} catch (Exception ex) {
 			ex.printStackTrace();
-		} 
+		}  
 	}
     
 }
