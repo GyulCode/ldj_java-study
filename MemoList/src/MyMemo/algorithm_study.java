@@ -31,6 +31,12 @@ public class algorithm_study {
 				//System.out.print(arr[i]+" ");
 				//out.write(String.valueOf(arr[i])+"\n");
 				out.write(Integer.toString(arr[i])+" ");
+				
+				//integer.tostring -> null값이 예외처리가 될수 있다.
+				//Integer.toString() 은 주어진 Integer 객체가 null 인 경우 NullPointerException 을 던질 수 있습니다 .
+				//string.valueof(내부적으로 Integer.toString() 메서드를 사용한다. )
+				//String.valueOf() 는 String.valueOf(Object obj) 메서드 로 이동하여 null 을 반환 하기 때문에 예외를 throw하지 않습니다.
+				//https://recordsoflife.tistory.com/997
 			}
 			out.flush();
 		} catch (Exception ex) {
