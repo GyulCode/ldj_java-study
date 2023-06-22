@@ -1,15 +1,19 @@
 package MyMemo;
 
 /*
- 23-06-19 월
+ 23-06-22 목
  --study-
 1. html - step
    코드분석 (JavaScriptBasicProject1~3) / JSPBasicProject1~3
 2. css - step, 교제
 3. js - step, 교제
    jsp - 교제
-4. 알고리즘, ch4, array
+4. array
 5. 자바 공부
+
+크롤링126
+html교제, css,html강의, 주말JSP
+db명령어 복습
 
 
  --개인--
