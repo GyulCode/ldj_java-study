@@ -11,7 +11,9 @@ package MyMemo;
 4. array
 5. 자바 공부
 
-크롤링126
+교제 : css태그 html 126page
+JspBasicProject3번 게시판
+크롤링
 html교제, css,html강의, 주말JSP
 db명령어 복습
 
